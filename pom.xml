@@ -37,6 +37,11 @@
 		</repository>
 	</repositories>
 
+	<properties>
+		<imagej-updater.version>0.6.0</imagej-updater.version>
+		<scijava-common.version>2.28.0</scijava-common.version>
+	</properties>
+
 	<dependencies>
 		<!-- ImageJ dependencies -->
 		<dependency>
