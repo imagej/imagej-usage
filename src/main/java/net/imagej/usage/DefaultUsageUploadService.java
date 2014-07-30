@@ -79,8 +79,9 @@ public class DefaultUsageUploadService extends AbstractService implements
 
 	@Override
 	public synchronized void uploadUsageStatistics() {
-		// get usage statistics
+		// get usage statistics, then flush them
 		final Map<String, UsageStats> stats = usageService.getStats();
+		usageService.clearStats();
 
 		// convert and filter stats to JSON, then upload to the server
 		final JSONObject json = json(stats);
