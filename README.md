@@ -13,7 +13,7 @@ a unique identifier string, to facilitate computation of statistics such as:
 "How many people used such-and-such command within the past 12 months?"
 
 Collection of usage statistics is optional, and can be toggled in the
-Edit > Options > ImageJ2 options dialog.
+Edit > Options > Privacy... options dialog.
 
 Such information is very useful to the developers in prioritizing bug-fixes
 and new features, as well for continued funding of valuable functionality.
