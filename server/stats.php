@@ -1,4 +1,5 @@
-<?php /*
+<?php
+/*
  * #%L
  * ImageJ software for multidimensional image processing and analysis.
  * %%
@@ -27,24 +28,29 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  * #L%
- */ ?>
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-<html>
-<body>
-<?php
+ */
+
 /* Displays graphs of statistics from the DB. */
 function displayStats() {
+	print "<html>\n";
+	print "<body>\n";
 	print "<p>Here is a chart for you:</p>\n";
 	print "<img src=\"chart.php\">\n";
+	print "</body>\n";
+	print "</html>\n";
 }
 
 /* Parses incoming statistics, storing them in the DB. */
 function processStats($data) {
+	header('Content-Type: application/json');
 	$json = json_decode($data, true);
+
+	$output = array();
 
 	$db = connectToDB();
 	if (!$db) {
-		print "<h2>Cannot connect to database</h2>\n";
+		$output['message'] = 'Cannot connect to database';
+		print json_encode($output);
 		return;
 	}
 	$user_id = value($json, 'user_id');
@@ -59,7 +65,8 @@ function processStats($data) {
 
 	$db->close();
 
-	print "<h2>Statistics processed.</h2>\n";
+	$output['message'] = 'Statistics processed';
+	print json_encode($output);
 }
 
 // -- Database functions --
@@ -188,5 +195,3 @@ function main() {
 
 main();
 ?>
-</body>
-</html>
