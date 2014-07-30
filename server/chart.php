@@ -57,7 +57,7 @@ $graph->title->SetFont(FF_FONT1, FS_BOLD);
 $graph->yaxis->title->SetFont(FF_FONT1, FS_BOLD);
 $graph->xaxis->title->SetFont(FF_FONT1, FS_BOLD);
 
-$graph->xaxis->SetTickLabels($datax);
+//$graph->xaxis->SetTickLabels($datax);
 //$graph->xaxis->SetTextTickInterval(2);
 
 // Display the graph
