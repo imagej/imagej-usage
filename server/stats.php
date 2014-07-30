@@ -53,13 +53,15 @@ function processStats($data) {
 		print json_encode($output);
 		return;
 	}
-	$user_id = value($json, 'user_id');
 	$timestamp = date('Y-m-d H:i:s');
+	$user = value($json, 'user');
+	$ip_address = $_SERVER['REMOTE_ADDR'];
+	$event_id = insertEvent($db, $timestamp, $user, $ip_address);
 
 	foreach ($json['sites'] as &$site) {
 		$site_id = lookupSite($db, $site);
 		foreach ($site['stats'] as &$stat) {
-			insertStat($db, $stat, $user_id, $site_id, $timestamp);
+			insertStat($db, $event_id, $stat, $site_id);
 		}
 	}
 
@@ -82,8 +84,10 @@ function connectToDB() {
 	createTable($db, "objects", "object_id",
 		"identifier TINYTEXT, site_id INT, version TINYTEXT, " .
 		"name TINYTEXT, label TINYTEXT, description TEXT");
+	createTable($db, "events", "event_id",
+		"timestamp DATETIME, user TINYTEXT, ip_address TINYTEXT");
 	createTable($db, "stats", "stat_id",
-		"timestamp DATETIME, user_id INT, object_id INT, count INT");
+		"event_id INT, object_id INT, count INT");
 
 	return $db;
 }
@@ -119,15 +123,23 @@ function insertSite($db, $site) {
 	return insert($db, $statement);
 }
 
+/* Inserts a row into the events table, returning the new event ID. */
+function insertEvent($db, $timestamp, $user, $ip_address) {
+	$statement = $db->prepare("INSERT INTO events " .
+		"(timestamp, user, ip_address) VALUES (?, ?, ?)");
+	$statement->bind_param('sss', $timestamp, $user, $ip_address);
+	return insert($db, $statement);
+}
+
 /** Inserts a row into the stats table, returning the new stat ID. */
-function insertStat($db, $stat, $user_id, $site_id, $timestamp) {
+function insertStat($db, $event_id, $stat, $site_id) {
 	$identifier = value($stat, 'id');
 	$object_id = lookupObject($db, $stat, $site_id);
 	$count = value($stat, 'count');
 
 	$statement = $db->prepare("INSERT INTO stats " .
-		"(timestamp, user_id, object_id, count) VALUES (?, ?, ?, ?)");
-	$statement->bind_param('siii', $timestamp, $user_id, $object_id, $count);
+		"(event_id, object_id, count) VALUES (?, ?, ?)");
+	$statement->bind_param('iii', $event_id, $object_id, $count);
 	return insert($db, $statement);
 }
 
