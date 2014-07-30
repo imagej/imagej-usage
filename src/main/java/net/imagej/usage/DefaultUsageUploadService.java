@@ -39,11 +39,13 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import net.imagej.updater.UpdateService;
+import net.imagej.usage.options.PrivacyOptions;
 
 import org.json.JSONObject;
 import org.scijava.event.ContextDisposingEvent;
 import org.scijava.event.EventHandler;
 import org.scijava.log.LogService;
+import org.scijava.options.OptionsService;
 import org.scijava.plugin.Parameter;
 import org.scijava.plugin.Plugin;
 import org.scijava.service.AbstractService;
@@ -73,12 +75,20 @@ public class DefaultUsageUploadService extends AbstractService implements
 	@Parameter
 	private UpdateService updateService;
 
+	@Parameter
+	private OptionsService optionsService;
+
 	private Timer timer;
 
 	// -- UsageUploadService methods --
 
 	@Override
 	public synchronized void uploadUsageStatistics() {
+		// verify that anonymous usage statistics are enabled
+		final PrivacyOptions privacyOptions =
+			optionsService.getOptions(PrivacyOptions.class);
+		if (!privacyOptions.isUsageCollected()) return;
+
 		// get usage statistics, then flush them
 		final Map<String, UsageStats> stats = usageService.getStats();
 		usageService.clearStats();
