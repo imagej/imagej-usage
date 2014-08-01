@@ -30,22 +30,19 @@
  * #L%
  */
 
-/* Displays graphs of statistics from the DB. */
-function displayStats() {
-	print "<html>\n";
-	print "<body>\n";
-	print "<p>Here is a chart for you:</p>\n";
-	print "<img src=\"chart.php\">\n";
-	print "</body>\n";
-	print "</html>\n";
-}
-
 /* Parses incoming statistics, storing them in the DB. */
 function processStats($data) {
 	header('Content-Type: application/json');
-	$json = json_decode($data, true);
 
 	$output = array();
+
+	if (strlen($data) == 0) {
+		$output['message'] = 'No statistics to process';
+		print json_encode($output);
+		return;
+	}
+
+	$json = json_decode($data, true);
 
 	$db = connectToDB();
 	if (!$db) {
@@ -197,12 +194,7 @@ function value($array, $key) {
 
 function main() {
 	$data = file_get_contents('php://input');
-	if (strlen($data) == 0) {
-		displayStats();
-	}
-	else {
-		processStats($data);
-	}
+	processStats($data);
 }
 
 main();
