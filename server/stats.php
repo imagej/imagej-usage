@@ -304,7 +304,7 @@ function insertStat($db, $event_id, $stat, $site_id) {
 	// let's avoid polluting the objects table with things like file paths.
 	//
 	// This regex culls any legacy arg containing a forward slash.
-	preg_replace('/^(legacy:[^?]*)\?.*\/.*$/', '$1', $identifier);
+	$identifier = preg_replace('/^(legacy:[^?]*)\?.*\/.*$/', '$1', $identifier);
 
 	$statement = $db->prepare("INSERT INTO stats " .
 		"(event_id, object_id, count) VALUES (?, ?, ?)");
