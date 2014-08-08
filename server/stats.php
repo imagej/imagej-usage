@@ -107,13 +107,7 @@ function lookupSite($db, $site) {
 		"WHERE name = ? AND url = ?");
 	$statement->bind_param('ss', $name, $url);
 	$site_id = select($statement, 'site_id');
-	return $site_id ? $site_id : insertSite($db, $site);
-}
-
-/* Inserts a row into the sites table, returning the new site ID. */
-function insertSite($db, $site) {
-	$name = value($site, 'name');
-	$url = value($site, 'url');
+	if ($site_id) return $site_id;
 
 	$statement = $db->prepare("INSERT INTO sites (name, url) VALUES (?, ?)");
 	$statement->bind_param('ss', $name, $url);
