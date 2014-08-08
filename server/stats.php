@@ -299,6 +299,13 @@ function insertStat($db, $event_id, $stat, $site_id) {
 	$object_id = lookupObject($db, $stat, $site_id);
 	$count = value($stat, 'count');
 
+	// NB: Purge sensitive details uploaded from early versions of imagej-usage.
+	// While these versions were only available for a couple of hours,
+	// let's avoid polluting the objects table with things like file paths.
+	//
+	// This regex culls any legacy arg containing a forward slash.
+	preg_replace('/^(legacy:[^?]*)\?.*\/.*$/', '$1', $identifier);
+
 	$statement = $db->prepare("INSERT INTO stats " .
 		"(event_id, object_id, count) VALUES (?, ?, ?)");
 	$statement->bind_param('iii', $event_id, $object_id, $count);
