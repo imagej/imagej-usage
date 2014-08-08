@@ -51,7 +51,26 @@ import org.scijava.util.FileUtils;
  *
  * <pre>
  * {
- *     "user_id": "a87BcCD/2h394#EAg",
+ *     "user": "a87BcCD/2h394#EAg",
+ *     "user_country": "US",
+ *     "user_language": "en",
+ *     "user_timezone": "America/Chicago",
+ *     "os_arch": "x86_64",
+ *     "os_name": "Mac OS X",
+ *     "os_version": "10.9.4",
+ *     "java_runtime_name": "Java(TM) SE Runtime Environment",
+ *     "java_runtime_version": "1.6.0_65-b14-462-11M4609",
+ *     "java_specification_name": "Java Platform API Specification",
+ *     "java_specification_vendor": "Sun Microsystems Inc.",
+ *     "java_specification_version": "1.6",
+ *     "java_vendor": "Apple Inc.",
+ *     "java_version": "1.6.0_65",
+ *     "java_vm_name": "Java HotSpot(TM) 64-Bit Server VM",
+ *     "java_vm_specification_name": "Java Virtual Machine Specification",
+ *     "java_vm_specification_vendor": "Sun Microsystems Inc.",
+ *     "java_vm_specification_version": "1.0",
+ *     "java_vm_vendor": "Apple Inc.",
+ *     "java_vm_version": "20.65-b04-462"
  *     "sites": [
  *         {
  *             "name": "ImageJ",

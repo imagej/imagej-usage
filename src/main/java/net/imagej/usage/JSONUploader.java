@@ -51,6 +51,15 @@ import org.scijava.util.DigestUtils;
  */
 public class JSONUploader {
 
+	/** System properties to include in the uploaded usage report. */
+	private static final String[] SYSTEM_PROPERTIES = { "user.country",
+		"user.language", "user.timezone", "os.arch", "os.name", "os.version",
+		"java.runtime.name", "java.runtime.version", "java.specification.name",
+		"java.specification.vendor", "java.specification.version", "java.vendor",
+		"java.version", "java.vm.name", "java.vm.specification.name",
+		"java.vm.specification.vendor", "java.vm.specification.version",
+		"java.vm.vendor", "java.vm.version" };
+
 	/** JSON object to upload. */
 	private final JSONObject json;
 
@@ -71,6 +80,7 @@ public class JSONUploader {
 	public void upload(final String user, final String url) {
 		if (!uploadNeeded()) return; // NB: No statistics.
 		json.put("user", user);
+		addSystemProperties();
 		try {
 			final String raw = upload(url);
 			handleResponse(raw);
@@ -96,6 +106,17 @@ public class JSONUploader {
 		}
 		// could not find any statistics
 		return false;
+	}
+
+	private void addSystemProperties() {
+		for (final String key : SYSTEM_PROPERTIES) {
+			addSystemProperty(key);
+		}
+	}
+
+	private void addSystemProperty(String key) {
+		final String value = System.getProperty(key);
+		if (value != null) json.put(key.replaceAll("\\.", "_"), value);
 	}
 
 	private JSONArray jsonArray(final JSONObject obj, final String key) {
