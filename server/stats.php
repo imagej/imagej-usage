@@ -350,9 +350,9 @@ function select($statement, $column) {
 	return $value;
 }
 
-/* Gets the value of the given key in the specified array, or null if none. */
+/* Gets the value of the given key in the specified array, or '' if none. */
 function value($array, $key) {
-	return $array && array_key_exists($key, $array) ? $array[$key] : null;
+	return $array && array_key_exists($key, $array) ? $array[$key] : '';
 }
 
 // -- Main function --
