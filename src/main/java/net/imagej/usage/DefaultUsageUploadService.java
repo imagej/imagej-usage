@@ -42,6 +42,7 @@ import net.imagej.updater.UpdateService;
 import net.imagej.usage.options.PrivacyOptions;
 
 import org.json.JSONObject;
+import org.scijava.app.StatusService;
 import org.scijava.event.ContextDisposingEvent;
 import org.scijava.event.EventHandler;
 import org.scijava.log.LogService;
@@ -85,6 +86,9 @@ public class DefaultUsageUploadService extends AbstractService implements
 	@Parameter
 	private OptionsService optionsService;
 
+	@Parameter
+	private StatusService statusService;
+
 	private Timer timer;
 
 	// -- UsageUploadService methods --
@@ -100,6 +104,8 @@ public class DefaultUsageUploadService extends AbstractService implements
 		final Map<String, UsageStats> stats = usageService.getStats();
 		usageService.clearStats();
 
+		statusService
+			.showStatus("Uploading plugin usage.. thank you for contributing!");
 		// convert and filter stats to JSON, then upload to the server
 		final JSONObject json = json(stats);
 		json.put(VERSION_KEY, VERSION);
