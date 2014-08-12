@@ -66,6 +66,13 @@ public class DefaultUsageUploadService extends AbstractService implements
 	UsageUploadService
 {
 
+	/** Usage upload version. The server may reject uploads if not up to a minimum
+	*version. */
+	public static final String VERSION = "2.0";
+
+	/** Key used by server to decode version. */
+	public static final String VERSION_KEY = "usage_version";
+
 	@Parameter
 	private LogService log;
 
@@ -95,6 +102,7 @@ public class DefaultUsageUploadService extends AbstractService implements
 
 		// convert and filter stats to JSON, then upload to the server
 		final JSONObject json = json(stats);
+		json.put(VERSION_KEY, VERSION);
 		final String user = getAnonymizedUser();
 		final String url = getServerURL();
 		new JSONUploader(json, log).upload(user, url);
