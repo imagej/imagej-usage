@@ -43,6 +43,7 @@ import net.imagej.usage.options.PrivacyOptions;
 
 import org.json.JSONObject;
 import org.scijava.app.StatusService;
+import org.scijava.command.CommandService;
 import org.scijava.event.ContextDisposingEvent;
 import org.scijava.event.EventHandler;
 import org.scijava.log.LogService;
@@ -56,6 +57,7 @@ import org.scijava.usage.UsageStats;
 import org.scijava.util.ByteArray;
 import org.scijava.util.DigestUtils;
 import org.scijava.util.IteratorPlus;
+import org.scijava.welcome.event.WelcomeEvent;
 
 /**
  * Default service for uploading anonymous usage statistics.
@@ -85,6 +87,9 @@ public class DefaultUsageUploadService extends AbstractService implements
 
 	@Parameter
 	private OptionsService optionsService;
+
+	@Parameter
+	private CommandService commandService;
 
 	@Parameter
 	private StatusService statusService;
@@ -163,6 +168,12 @@ public class DefaultUsageUploadService extends AbstractService implements
 		uploadUsageStatistics();
 	}
 
+	/** Verify privacy settings when an {@link WelcomeEvent} is displayed. */
+	@EventHandler
+	private void onEvent(@SuppressWarnings("unused") final WelcomeEvent event) {
+		commandService.run(PrivacyOptions.class, true);
+	}
+	
 	// -- Helper methods --
 
 	/** Gets the first known MAC address of this machine, or null if none. */
