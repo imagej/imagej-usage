@@ -53,7 +53,7 @@ public class PrivacyOptions extends OptionsPlugin {
 			+ "ImageJ plugins are being used. Such information is very helpful to "
 			+ "the developers in prioritizing bug-fixes and new features, as well "
 			+ "as for continued funding of useful functionality.")
-	private boolean usageCollected = true;
+	private boolean usageCollected = false;
 
 	// -- PrivacyOptions methods --
 
