@@ -58,7 +58,6 @@ function processStats($data) {
 		return;
 	}
 	$timestamp = date('Y-m-d H:i:s');
-	$ip_address = $_SERVER['REMOTE_ADDR'];
 
 	$user_id = lookupUser($db, $json);
 	$country_id = lookupCountry($db, $json);
@@ -67,7 +66,7 @@ function processStats($data) {
 	$os_id = lookupOS($db, $json);
 	$java_id = lookupJava($db, $json);
 
-	$event_id = insertEvent($db, $timestamp, $ip_address, $user_id,
+	$event_id = insertEvent($db, $timestamp, $user_id,
 		$country_id, $language_id, $timezone_id, $os_id, $java_id);
 
 	foreach ($json['sites'] as &$site) {
@@ -125,7 +124,7 @@ function connectToDB() {
 
 	// upload events (one row each time ImageJ uploads a batch of statistics)
 	createTable($db, "events", "event_id",
-		"timestamp DATETIME, ip_address TINYTEXT, user_id INT, country_id INT, " .
+		"timestamp DATETIME, user_id INT, country_id INT, " .
 		"language_id INT, timezone_id INT, os_id INT, java_id INT");
 
 	// usage counts (per object, per event)
@@ -286,16 +285,16 @@ function lookupSite($db, $site) {
 }
 
 /* Inserts a row into the events table, returning the new event ID. */
-function insertEvent($db, $timestamp, $ip_address, $user_id,
+function insertEvent($db, $timestamp, $user_id,
 	$country_id, $language_id, $timezone_id, $os_id, $java_id)
 {
 	$statement = $db->prepare("INSERT INTO events " .
-		"(timestamp, ip_address, user_id, " .
+		"(timestamp, user_id, " .
 		"country_id, language_id, timezone_id, os_id, java_id) " .
-		"VALUES (?, ?, ?, " . // timestamp, ip_address, user_id
-		"?, ?, ?, ?, ?)"); // country_id, language_id, timezone_id, os_id, java_id
-	$statement->bind_param('ssiiiiii',
-		$timestamp, $ip_address, $user_id,
+		"VALUES (?, ?, ?, " . // timestamp, user_id
+		"?, ?, ?, ?)"); // country_id, language_id, timezone_id, os_id, java_id
+	$statement->bind_param('siiiiii',
+		$timestamp, $user_id,
 		$country_id, $language_id, $timezone_id, $os_id, $java_id);
 	return insert($db, $statement);
 }
