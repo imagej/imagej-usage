@@ -47,8 +47,6 @@ import org.junit.Test;
 import org.scijava.Context;
 import org.scijava.Identifiable;
 import org.scijava.Locatable;
-import org.scijava.usage.UsageService;
-import org.scijava.usage.UsageStats;
 
 /**
  * Tests {@link UsageService}.

@@ -40,7 +40,6 @@ import net.imagej.updater.UpdateSite;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.scijava.log.LogService;
-import org.scijava.usage.UsageStats;
 import org.scijava.util.FileUtils;
 
 /**

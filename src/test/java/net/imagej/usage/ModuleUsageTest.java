@@ -42,8 +42,6 @@ import org.scijava.command.Command;
 import org.scijava.command.CommandService;
 import org.scijava.event.EventService;
 import org.scijava.module.Module;
-import org.scijava.usage.UsageService;
-import org.scijava.usage.UsageStats;
 
 /**
  * Tests accumulation of {@link Module} executions.

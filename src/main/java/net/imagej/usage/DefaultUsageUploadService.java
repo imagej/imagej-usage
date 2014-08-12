@@ -52,8 +52,6 @@ import org.scijava.plugin.Parameter;
 import org.scijava.plugin.Plugin;
 import org.scijava.service.AbstractService;
 import org.scijava.service.Service;
-import org.scijava.usage.UsageService;
-import org.scijava.usage.UsageStats;
 import org.scijava.util.ByteArray;
 import org.scijava.util.DigestUtils;
 import org.scijava.util.IteratorPlus;

@@ -44,7 +44,6 @@ import org.junit.Test;
 import org.scijava.Identifiable;
 import org.scijava.Locatable;
 import org.scijava.service.AbstractService;
-import org.scijava.usage.UsageStats;
 
 /**
  * Tests {@link JSONBuilder}.
