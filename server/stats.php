@@ -44,6 +44,13 @@ function processStats($data) {
 
 	$json = json_decode($data, true);
 
+	$version = value($json, 'usage_version');
+
+	/* Verify the version of the data hitting the server. If < 2.0 it may
+ 	* have been acquired without user consent. */
+	if (is_null($version)) return;
+	if ($version < 2.0) return;
+
 	$db = connectToDB();
 	if (!$db) {
 		$output['message'] = 'Cannot connect to database';
