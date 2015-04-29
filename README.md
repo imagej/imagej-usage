@@ -1,4 +1,4 @@
-![](http://jenkins.imagej.net/job/ImageJ-usage/lastBuild/badge/icon)
+[![](http://jenkins.imagej.net/job/ImageJ-usage/lastBuild/badge/icon)](http://jenkins.imagej.net/job/ImageJ-usage/)
 
 ImageJ Usage Statistics
 -----------------------
