@@ -1,3 +1,5 @@
+![](http://jenkins.imagej.net/job/ImageJ-usage/lastBuild/badge/icon)
+
 ImageJ Usage Statistics
 -----------------------
 
