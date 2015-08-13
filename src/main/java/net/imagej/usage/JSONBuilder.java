@@ -91,7 +91,7 @@ import org.scijava.util.FileUtils;
  *         },
  *         {
  *             "name": "Fiji"
- *             "url": "http://fiji.sc/update/",
+ *             "url": "http://update.fiji.sc/",
  *             "stats": [
  *                 {
  *                     "id": "script:plugins/Scripts/Image/Adjust/Scale_to_DPI.js",

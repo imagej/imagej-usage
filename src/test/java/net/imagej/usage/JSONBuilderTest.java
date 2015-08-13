@@ -63,7 +63,7 @@ public class JSONBuilderTest {
 		final String siteNameA = "ImageJ";
 		final String siteURLA = "http://update.imagej.net/";
 		final String siteNameB = "Fiji";
-		final String siteURLB = "http://fiji.sc/update/";
+		final String siteURLB = "http://update.fiji.sc/";
 
 		final String id1 = "command:net.imagej.ui.swing.updater.ImageJUpdater";
 		final long count1 = 3;
