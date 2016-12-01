@@ -15,6 +15,30 @@
 	<name>ImageJ Usage</name>
 	<description>Anonymous usage statistics plugin for ImageJ.</description>
 
+	<developers>
+		<developer>
+			<id>ctrueden</id>
+			<name>Curtis Rueden</name>
+			<url>http://imagej.net/User:Rueden</url>
+			<roles>
+				<role>founder</role>
+				<role>lead</role>
+				<role>developer</role>
+				<role>debugger</role>
+				<role>reviewer</role>
+				<role>support</role>
+				<role>maintainer</role>
+			</roles>
+		</developer>
+	</developers>
+	<contributors>
+		<contributor>
+			<name>Mark Hiner</name>
+			<url>http://imagej.net/User:Hinerm</url>
+			<properties><id>hinerm</id></properties>
+		</contributor>
+	</contributors>
+
 	<scm>
 		<connection>scm:git:git://github.com/imagej/imagej-usage</connection>
 		<developerConnection>scm:git:git@github.com:imagej/imagej-usage</developerConnection>
@@ -91,5 +115,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
