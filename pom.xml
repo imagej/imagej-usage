@@ -3,17 +3,30 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>net.imagej</groupId>
-		<artifactId>pom-imagej</artifactId>
-		<version>5.0</version>
+		<groupId>org.scijava</groupId>
+		<artifactId>pom-scijava</artifactId>
+		<version>12.0.0</version>
 		<relativePath />
 	</parent>
 
+	<groupId>net.imagej</groupId>
 	<artifactId>imagej-usage</artifactId>
 	<version>0.4.1-SNAPSHOT</version>
 
 	<name>ImageJ Usage</name>
 	<description>Anonymous usage statistics plugin for ImageJ.</description>
+	<url>http://imagej.net/ImageJ_Usage</url>
+	<inceptionYear>2009</inceptionYear>
+	<organization>
+		<name>ImageJ</name>
+		<url>http://imagej.net/</url>
+	</organization>
+	<licenses>
+		<license>
+			<name>Simplified BSD License</name>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
 
 	<developers>
 		<developer>
@@ -39,6 +52,13 @@
 		</contributor>
 	</contributors>
 
+	<mailingLists>
+		<mailingList>
+			<name>ImageJ Forum</name>
+			<archive>http://forum.imagej.net/</archive>
+		</mailingList>
+	</mailingLists>
+
 	<scm>
 		<connection>scm:git:git://github.com/imagej/imagej-usage</connection>
 		<developerConnection>scm:git:git@github.com:imagej/imagej-usage</developerConnection>
@@ -53,6 +73,15 @@
 		<system>Jenkins</system>
 		<url>http://jenkins.imagej.net/job/ImageJ-usage/</url>
 	</ciManagement>
+
+	<properties>
+		<package-name>net.imagej.usage</package-name>
+		<license.licenseName>bsd_2</license.licenseName>
+		<license.copyrightOwners>Board of Regents of the University of
+Wisconsin-Madison, Broad Institute of MIT and Harvard, and Max Planck
+Institute of Molecular Cell Biology and Genetics.</license.copyrightOwners>
+		<license.projectName>ImageJ software for multidimensional image processing and analysis.</license.projectName>
+	</properties>
 
 	<repositories>
 		<repository>
@@ -91,16 +120,6 @@
 
 	<build>
 		<plugins>
-			<plugin>
-				<artifactId>maven-jar-plugin</artifactId>
-				<configuration>
-					<archive>
-						<manifest>
-							<packageName>net.imagej.usage</packageName>
-						</manifest>
-					</archive>
-				</configuration>
-			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>license-maven-plugin</artifactId>
