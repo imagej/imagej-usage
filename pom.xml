@@ -70,8 +70,8 @@
 		<url>https://github.com/imagej/imagej-usage/issues</url>
 	</issueManagement>
 	<ciManagement>
-		<system>Jenkins</system>
-		<url>http://jenkins.imagej.net/job/ImageJ-usage/</url>
+		<system>Travis CI</system>
+		<url>https://travis-ci.org/imagej/imagej-usage</url>
 	</ciManagement>
 
 	<properties>

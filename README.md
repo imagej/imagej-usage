@@ -1,4 +1,4 @@
-[![](http://jenkins.imagej.net/job/ImageJ-usage/lastBuild/badge/icon)](http://jenkins.imagej.net/job/ImageJ-usage/)
+[![](https://travis-ci.org/imagej/imagej-usage.svg?branch=master)](https://travis-ci.org/imagej/imagej-usage)
 
 ImageJ Usage Statistics
 -----------------------
