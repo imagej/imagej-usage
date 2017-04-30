@@ -11,7 +11,7 @@
 
 	<groupId>net.imagej</groupId>
 	<artifactId>imagej-usage</artifactId>
-	<version>0.4.1-SNAPSHOT</version>
+	<version>0.4.1</version>
 
 	<name>ImageJ Usage</name>
 	<description>Anonymous usage statistics plugin for ImageJ.</description>
@@ -62,7 +62,7 @@
 	<scm>
 		<connection>scm:git:git://github.com/imagej/imagej-usage</connection>
 		<developerConnection>scm:git:git@github.com:imagej/imagej-usage</developerConnection>
-		<tag>HEAD</tag>
+		<tag>imagej-usage-0.4.1</tag>
 		<url>https://github.com/imagej/imagej-usage</url>
 	</scm>
 	<issueManagement>
