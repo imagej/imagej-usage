@@ -182,6 +182,9 @@ public class JSONBuilderTest {
 			return updateSite;
 		}
 
+		@Override
+		public UpdateSite getUpdateSite(String name) {
+			throw new IllegalStateException();
+		}
 	}
-
 }
